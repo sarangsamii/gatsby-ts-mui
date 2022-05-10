@@ -1,11 +1,13 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
-import CssBaseline from '@mui/material/CssBaseline';
-import { ThemeProvider } from '@mui/material/styles';
-import theme from '../../src/utils/theme';
+import * as React from "react";
+import PropTypes from "prop-types";
+import { Helmet } from "react-helmet";
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "../../src/utils/theme";
+import Layout from "../../src/Layout";
 
-export default function TopLayout(props:any) {
+export default function TopLayout(props: any) {
+  console.log(props)
   return (
     <React.Fragment>
       <Helmet>
@@ -18,7 +20,7 @@ export default function TopLayout(props:any) {
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        {props.children}
+        <Layout>{props.children}</Layout>
       </ThemeProvider>
     </React.Fragment>
   );

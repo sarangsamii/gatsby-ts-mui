@@ -8,7 +8,15 @@ import Fab from "@mui/material/Fab";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Zoom from "@mui/material/Zoom";
 
+import {
+  createMemorySource,
+  createHistory,
+  LocationProvider
+} from "@reach/router"
+
+
 import Navbar from "./Navbar";
+import Footer from './Footer';
 
 interface Props {
   window?: () => Window;
@@ -52,18 +60,27 @@ function ScrollTop(props: Props) {
 export default function BackToTop(props: Props) {
   const { children } = props;
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <Navbar />
-      <Toolbar id="back-to-top-anchor" />
-      <Container>
-        <Box sx={{ my: 2 }}>{children}</Box>
-      </Container>
-      <ScrollTop {...props}>
-        <Fab color="secondary" size="small" aria-label="scroll back to top">
-          <KeyboardArrowUpIcon />
-        </Fab>
-      </ScrollTop>
-    </React.Fragment>
+    <LocationProvider >
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          minHeight: "100vh",
+        }}
+      >
+        <CssBaseline />
+        <Navbar />
+        <Toolbar sx={{display:"none"}} id="back-to-top-anchor" />
+     
+          {children}
+      
+        <ScrollTop {...props}>
+          <Fab color="secondary" size="small" aria-label="scroll back to top">
+            <KeyboardArrowUpIcon />
+          </Fab>
+        </ScrollTop>
+        <Footer/>
+      </Box>
+    </LocationProvider>
   );
 }
