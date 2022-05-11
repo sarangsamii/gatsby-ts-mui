@@ -10,7 +10,7 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { useLocation } from '@reach/router';
-import { navigate, PageProps } from "gatsby";
+import { navigate, Link } from "gatsby";
 
 const pages = [
   { name: "Home", url: "/" },
@@ -39,6 +39,7 @@ const NavBar = () => {
     <AppBar position="static" color="inherit">
       <Container>
         <Toolbar disableGutters>
+          <Link to="/" style={{textDecoration:"none"}} activeClassName="active">
           <Typography
             color="primary"
             variant="h5"
@@ -54,6 +55,8 @@ const NavBar = () => {
               Recipes
             </Typography>
           </Typography>
+        </Link>
+      
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
@@ -117,6 +120,15 @@ const NavBar = () => {
                   <Typography textAlign="center">{page.name}</Typography>
                 </MenuItem>
               ))}
+                <MenuItem
+               
+                  onClick={() => {
+                    handleCloseNavMenu();
+                    navigate("/contact");
+                  }}
+                >
+                  <Typography textAlign="center">Contact</Typography>
+                </MenuItem>
             </Menu>
           </Box>
 
